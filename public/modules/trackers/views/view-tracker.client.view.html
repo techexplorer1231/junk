@@ -1,0 +1,41 @@
+<section data-ng-controller="TrackersController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="tracker.name"></h1>
+	</div>
+	<div class="pull-right" data-ng-show="authentication.user._id == tracker.user._id">
+		<a class="btn btn-primary" href="/#!/trackers/{{tracker._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<div class="form-group">
+    <label class="control-label" for="name">Tracker Category</label>
+    <div class="controls">
+      <div>{{tracker.value[0].category}}</div></div>
+    </div>
+    <label class="control-label" for="name">Tracker Description</label>
+    <div class="controls">
+      <div>{{tracker.details}}</div></div>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="item in tracker.value[0].checklist">
+          <td>{{$index + 1}}</td>
+          <td>{{item.value}}</td>
+          <td>{{item.done}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

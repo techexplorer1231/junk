@@ -1,0 +1,45 @@
+<section data-ng-controller="TrackersController">
+  <div class="page-header">
+    <h1>New Tracker</h1>
+  </div>
+  <div class="col-md-12">
+    <form class="form-horizontal" data-ng-submit="create()" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label" for="name">Details</label>
+          <div class="controls">
+            <textarea data-ng-model="details" id="details" class="form-control" placeholder="Details" required rows="3"></textarea>
+          </div>
+        </div>
+        <div data-ng-controller="ChecklistsController" data-ng-init="find()">
+          <span>Choose Category</span><select ng-model="chosenCategory" ng-options="checklist.category for checklist in checklists" ng-change="Test($Index)">
+              <option value="">Select</option>
+          </select>
+          <div class="table-responsive" data-ng-hide="{{checklistsByCategory}}">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="item in checklistsByCategory[0].checklist">
+                  <td>{{$index + 1}}</td>
+                  <td>{{item.value}}</td>
+                  <td><input type="checkbox" data-ng-model="item.done">Task Completed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-default">
+        </div>
+        <div data-ng-show="error" class="text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

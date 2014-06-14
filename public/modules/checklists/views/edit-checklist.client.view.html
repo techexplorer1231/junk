@@ -1,0 +1,45 @@
+<section data-ng-controller="ChecklistsController" data-ng-init="findOne()">
+  <div class="page-header">
+    <h1>Edit Checklist</h1>
+  </div>
+  <div class="col-md-12">
+    <form class="form-horizontal" data-ng-submit="update()" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label" for="name">Checklist Category</label>
+          <div class="controls">
+            <input type="text" data-ng-model="checklist.category" id="name" class="form-control" placeholder="Checklist Category" required>
+          </div>
+        </div>
+        <!-- start checklist -->
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="item in checklist.checklist">
+                <td>{{$index + 1}}</td>
+                <td>
+                  <input class="col-sm-10" type="text" data-ng-model="item.value" placeholder="Enter a checklist item" required>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <a class="btn btn-success pull-right" data-ng-click="addRowForEdit()">Add Row &nbsp;&nbsp;&nbsp;<i class="fa fa-plus fa-sm"></i></a>
+        </div>
+        <!-- end checklist -->
+
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div data-ng-show="error" class="text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
